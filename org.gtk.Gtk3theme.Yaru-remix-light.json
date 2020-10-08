@@ -19,8 +19,8 @@
          "sources":[
             {
                "type":"archive",
-               "url":"https://github.com/Muqtxdir/yaru-remix/releases/download/v20.04.1/Yaru-remix-light-gtk.zip",
-               "sha256":"8d8e38eef711aaeb949905da4839f63180a698e8f26b0fefc724f96246a93043"
+               "url":"https://github.com/Muqtxdir/yaru-remix/releases/download/v20.10/Yaru-remix-light-gtk.zip",
+               "sha256":"b9827b227b093ca516c007927e5be57190a395726194f6cc1be880f2186b0f41"
             }
          ]
       },
