@@ -8,10 +8,4 @@
         <p>Yaru-remix-light theme</p>
     </description>
     <url type="homepage">https://github.com/Muqtxdir/yaru-remix/</url>
-    <releases>
-        <release version="20.10" date="2020-10-08">
-            <description>Increased Padding</description>
-        </release>
-    </releases>
 </component>
-
