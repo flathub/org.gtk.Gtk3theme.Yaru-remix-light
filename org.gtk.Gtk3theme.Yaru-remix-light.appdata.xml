@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="2.0" encoding="UTF-8"?>
 <component type="runtime">
     <id>org.gtk.Gtk3theme.Yaru-remix-light</id>
     <metadata_license>CC0-1.0</metadata_license>
@@ -8,4 +8,8 @@
         <p>Yaru-remix-light theme</p>
     </description>
     <url type="homepage">https://github.com/Muqtxdir/yaru-remix/</url>
+    <release version="20.10" date="2020-10-08">
+            <description>Increased Padding</description>
+        </release>
+    </releases>
 </component>

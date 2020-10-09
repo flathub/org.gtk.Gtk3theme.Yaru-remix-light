@@ -1,43 +1,90 @@
 {
-   "id":"org.gtk.Gtk3theme.Yaru-remix-light",
-   "branch":"3.22",
-   "runtime":"org.freedesktop.Sdk",
-   "build-extension":true,
-   "sdk":"org.freedesktop.Sdk",
-   "runtime-version":"20.08",
-   "appstream-compose":false,
-   "separate-locales":false,
-   "modules":[
-      {
-         "name":"Yaru-remix-light",
-         "buildsystem":"simple",
-         "build-commands":[
-            "install -dm755 /usr/share/runtime/share/themes/Yaru-remix-light/gtk-3.0",
-            "cp -aL gtk-3.20/* /usr/share/runtime/share/themes/Yaru-remix-light/gtk-3.0",
-            "cp -a index.theme /usr/share/runtime/share/themes/Yaru-remix-light"
-         ],
-         "sources":[
+  "id": "org.gtk.Gtk3theme.Yaru-remix-light",
+  "branch": "3.22",
+  "runtime": "org.freedesktop.Platform",
+  "runtime-version": "20.08",
+  "sdk": "org.freedesktop.Sdk",
+  "build-extension": true,
+  "appstream-compose": false,
+  "separate-locales": false,
+  "build-options": {
+    "prefix": "/usr/share/runtime/share/themes/Yaru-remix-light/gtk-3.0"
+  },
+  "modules": [
+    {
+      "name": "sassc",
+      "config-opts": ["--with-libsass=/usr/share/runtime/share/themes/Yaru-remix-light/gtk-3.0"],
+      "cleanup": ["*"],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/sass/sassc/archive/3.5.0.tar.gz",
+          "sha256": "26f54e31924b83dd706bc77df5f8f5553a84d51365f0e3c566df8de027918042"
+        },
+        {
+          "type": "script",
+          "dest-filename": "autogen.sh",
+          "commands": ["autoreconf -si"]
+        }
+      ],
+      "modules": [
+        {
+          "name": "libsass",
+          "cleanup": ["*"],
+          "sources": [
             {
-               "type":"archive",
-               "url":"https://github.com/Muqtxdir/yaru-remix/releases/download/v20.10/Yaru-remix-light-gtk.zip",
-               "sha256":"cdf45b8b0ba6c6901389791320029e744db2e7a563bd5ba4d5d399bca4b3ce2a"
+              "type": "archive",
+              "url": "https://github.com/sass/libsass/archive/3.5.4.tar.gz",
+              "sha256": "5f61cbcddaf8e6ef7a725fcfa5d05297becd7843960f245197ebb655ff868770"
+            },
+            {
+              "type": "script",
+              "dest-filename": "autogen.sh",
+              "commands": ["autoreconf -si"]
             }
-         ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Yaru-remix-light",
+      "buildsystem": "meson",
+      "build-options": {
+        "prefix": "/usr/share/runtime",
+        "append-path": "/usr/share/runtime/share/themes/Yaru-remix-light/gtk-3.0/bin",
+        "config-opts": [ "-Dicons=false", "-Dgnome-shell=false", "-Ddark=false", "-Ddefault=false"  ]
       },
-      {
-         "name":"appdata",
-         "buildsystem":"simple",
-         "build-commands":[
-            "mkdir -p ${FLATPAK_DEST}/share/appdata",
-            "cp org.gtk.Gtk3theme.Yaru-remix-light.appdata.xml ${FLATPAK_DEST}/share/appdata",
-            "appstream-compose --basename=org.gtk.Gtk3theme.Yaru-remix-light --prefix=${FLATPAK_DEST} --origin=flatpak org.gtk.Gtk3theme.Yaru-remix-light"
-         ],
-         "sources":[
-            {
-               "type":"file",
-               "path":"org.gtk.Gtk3theme.Yaru-remix-light.appdata.xml"
-            }
-         ]
-      }
-   ]
+      "sources": [
+        {
+          "type": "git",
+          "url": "https://github.com/Muqtxdir/yaru-remix.git",
+          "commit": "2b65b533ef62b6a67132ddf792641f4407588074"
+        },
+        {
+          "type": "shell",
+          "//": "GNOME only wants 3.0: rename gtk-3.20 folder as gtk-3.0, and modify meson.build accordingly",
+          "commands": [
+            "rm -r gtk/src/default/gtk-3.0",
+            "mv gtk/src/default/gtk-3.20 gtk/src/default/gtk-3.0",
+            "sed -i -e \"s/  '3.0,'/  '3.0'/\" gtk/src/meson.build",
+            "sed -i -e \"s/  '3.20'//\" gtk/src/meson.build"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "appdata",
+      "buildsystem": "simple",
+      "build-commands": [
+        "install -Dm644 org.gtk.Gtk3theme.Yaru-remix-light.appdata.xml ${FLATPAK_DEST}/share/appdata/org.gtk.Gtk3theme.Yaru-remix-light.appdata.xml",
+        "appstream-compose --basename=org.gtk.Gtk3theme.Yaru-remix-light --prefix=${FLATPAK_DEST} --origin=flatpak org.gtk.Gtk3theme.Yaru-remix-light"
+      ],
+      "sources": [
+        {
+          "type": "file",
+          "path": "org.gtk.Gtk3theme.Yaru-remix-light.appdata.xml"
+        }
+      ]
+    }
+  ]
 }
