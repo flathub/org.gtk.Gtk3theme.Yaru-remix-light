@@ -1,0 +1,8 @@
+[Runtime]
+name=org.gtk.Gtk3theme.Yaru-remix-light
+runtime=org.freedesktop.Platform/x86_64/20.08
+sdk=org.freedesktop.Sdk/x86_64/20.08
+
+[ExtensionOf]
+ref=runtime/org.freedesktop.Platform/x86_64/20.08
+runtime=org.freedesktop.Platform/x86_64/20.08
