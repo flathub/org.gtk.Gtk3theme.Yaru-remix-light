@@ -52,13 +52,13 @@
       "build-options": {
         "prefix": "/usr/share/runtime",
         "append-path": "/usr/share/runtime/share/themes/Yaru-remix-light/gtk-3.0/bin",
-        "config-opts": [ "-Dicons=false", "-Dgnome-shell=false", "-Ddark=false", "-Ddefault=false"  ]
+        "config-opts": [ "-Dicons=false", "-Dgnome-shell=false", "-Ddark=false", "-Ddefault=false", "-Dgresource=false"  ]
       },
       "sources": [
         {
           "type": "git",
           "url": "https://github.com/Muqtxdir/yaru-remix.git",
-          "commit": "2b65b533ef62b6a67132ddf792641f4407588074"
+          "commit": "abab99028acfc43f0a26df66e0edd48246c7356d"
         },
         {
           "type": "shell",
